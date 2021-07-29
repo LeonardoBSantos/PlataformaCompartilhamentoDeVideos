@@ -3,14 +3,16 @@ using ApiRest.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiRest.Migrations
 {
     [DbContext(typeof(videoContext))]
-    partial class videoContextModelSnapshot : ModelSnapshot
+    [Migration("20210728221333_categoria")]
+    partial class categoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,9 +20,9 @@ namespace ApiRest.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ApiRest.Model.categoria", b =>
+            modelBuilder.Entity("ApiRest.Model.categorias", b =>
                 {
-                    b.Property<int>("categoriaId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -31,7 +33,7 @@ namespace ApiRest.Migrations
                     b.Property<string>("nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("categoriaId");
+                    b.HasKey("Id");
 
                     b.ToTable("categoriaItems");
                 });
@@ -55,23 +57,9 @@ namespace ApiRest.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("fk_categoriaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("fk_categoriaId");
-
                     b.ToTable("videoItems");
-                });
-
-            modelBuilder.Entity("ApiRest.Model.video", b =>
-                {
-                    b.HasOne("ApiRest.Model.categoria", null)
-                        .WithMany()
-                        .HasForeignKey("fk_categoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

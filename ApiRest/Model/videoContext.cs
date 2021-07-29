@@ -15,6 +15,7 @@ namespace ApiRest.Model
 
         //Registrando o model
         public DbSet<video> videoItems { get; set; }
+        public DbSet<categoria> categoriaItems { get; set; }
 
         //Fluent API - configurando campos da tabela
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,6 +25,12 @@ namespace ApiRest.Model
             modelBuilder.Entity<video>().Property(p => p.Titulo).IsRequired();
             modelBuilder.Entity<video>().Property(p => p.Descricao).IsRequired();
             modelBuilder.Entity<video>().Property(p => p.Url).IsRequired();
+            modelBuilder.Entity<video>()
+                .HasOne<categoria>()
+                .WithMany()
+                .HasForeignKey(p => p.fk_categoriaId);
+
+            modelBuilder.Entity<categoria>().HasKey(p => p.categoriaId);
         }
     }
 }

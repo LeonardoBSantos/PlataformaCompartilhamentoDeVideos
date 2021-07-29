@@ -3,14 +3,16 @@ using ApiRest.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiRest.Migrations
 {
     [DbContext(typeof(videoContext))]
-    partial class videoContextModelSnapshot : ModelSnapshot
+    [Migration("20210728224818_campoIdCategoria")]
+    partial class campoIdCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,18 +62,7 @@ namespace ApiRest.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("fk_categoriaId");
-
                     b.ToTable("videoItems");
-                });
-
-            modelBuilder.Entity("ApiRest.Model.video", b =>
-                {
-                    b.HasOne("ApiRest.Model.categoria", null)
-                        .WithMany()
-                        .HasForeignKey("fk_categoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
