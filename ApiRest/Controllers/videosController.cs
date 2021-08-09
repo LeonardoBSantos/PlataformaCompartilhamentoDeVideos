@@ -41,6 +41,21 @@ namespace ApiRest.Controllers
             return video;
         }
 
+        // GET: api/videos/busca?titulo=O Lobo de WallStreet
+        [HttpGet("busca")]
+        public async Task<IActionResult> BuscaPorTitulo([FromQuery] string titulo)
+        {
+            var video = from v in _context.videoItems.Where(v => v.Titulo == titulo)
+                              select v;
+
+            if (video == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(video);
+        }
+
         // PUT: api/videos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

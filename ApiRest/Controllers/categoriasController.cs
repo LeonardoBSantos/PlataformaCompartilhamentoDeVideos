@@ -41,6 +41,7 @@ namespace ApiRest.Controllers
             return categoria;
         }
 
+        // GET: api/categorias/5/videos
         [HttpGet("{id}/videos")]
         public async Task<IQueryable<video>> GetVideosPorCategoria(int id)
         {
