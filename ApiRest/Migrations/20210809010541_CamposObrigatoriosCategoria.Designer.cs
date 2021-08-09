@@ -3,14 +3,16 @@ using ApiRest.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiRest.Migrations
 {
     [DbContext(typeof(videoContext))]
-    partial class videoContextModelSnapshot : ModelSnapshot
+    [Migration("20210809010541_CamposObrigatoriosCategoria")]
+    partial class CamposObrigatoriosCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

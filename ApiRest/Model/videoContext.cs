@@ -31,6 +31,8 @@ namespace ApiRest.Model
                 .HasForeignKey(p => p.fk_categoriaId);
 
             modelBuilder.Entity<categoria>().HasKey(p => p.categoriaId);
+            modelBuilder.Entity<categoria>().Property(p => p.nome).IsRequired();
+            modelBuilder.Entity<categoria>().Property(p => p.cor).IsRequired();
         }
     }
 }
