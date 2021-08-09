@@ -41,6 +41,33 @@ namespace ApiRest.Controllers
             return categoria;
         }
 
+        [HttpGet("{id}/videos")]
+        public async Task<IQueryable<video>> GetVideosPorCategoria(int id)
+        {
+            var videosPorCategoria = _context.videoItems.Where(v =>v.fk_categoriaId == id);
+
+            //if (videosPorCategoria == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return videosPorCategoria;
+        }
+
+        [HttpGet("{id}/videos2")]
+        public async Task<IActionResult> GetVideosPorCategoria2(int id)
+        {
+            var videosPorCategoria = from v in _context.videoItems.Where(v => v.fk_categoriaId == id)
+                                     select v;
+
+            if (videosPorCategoria == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(videosPorCategoria);
+        }
+
         // PUT: api/categorias/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
